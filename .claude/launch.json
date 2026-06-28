@@ -2,11 +2,16 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "datalayer-creator",
+      "name": "hardal-inspector",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-p", "4321", "hardal-inspector"],
+      "port": 4321
+    },
+    {
+      "name": "nextjs",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
-      "port": 3000,
-      "autoPort": false
+      "port": 3000
     }
   ]
 }

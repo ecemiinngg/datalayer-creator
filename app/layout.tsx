@@ -1,16 +1,22 @@
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import './globals.css';
 
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
-  title: 'DataLayer Creator — GA4 & GTM Spec Generator',
-  description:
-    'Automatically generate dataLayer.push() code, GTM container JSON, and QA checklists for GA4 events.',
+  title: 'sGTM Setup Checklist — Server-Side Tracking Kurulum Rehberi',
+  description: 'GA4, Meta CAPI ve TikTok Events API entegrasyonlarını içeren adım adım sGTM kurulum rehberi.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen bg-slate-50 antialiased">{children}</body>
+    <html lang="tr" className={inter.variable}>
+      <body>{children}</body>
     </html>
   );
 }
