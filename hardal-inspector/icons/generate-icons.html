@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head><title>Icon Generator</title></head>
+<body>
+<canvas id="c"></canvas>
+<script>
+// Generates PNG icons and triggers download for each size
+[16, 32, 48, 128].forEach(size => {
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d');
+
+  // Background circle
+  ctx.beginPath();
+  ctx.arc(size/2, size/2, size/2 - 1, 0, Math.PI*2);
+  ctx.fillStyle = '#F5A623';
+  ctx.fill();
+
+  // Border
+  ctx.beginPath();
+  ctx.arc(size/2, size/2, size/2 - 1, 0, Math.PI*2);
+  ctx.strokeStyle = '#1A1A1A';
+  ctx.lineWidth = size > 32 ? 2 : 1;
+  ctx.stroke();
+
+  // Letter H
+  ctx.fillStyle = '#1A1A1A';
+  ctx.font = `bold ${Math.round(size * 0.52)}px Arial`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('H', size/2, size/2 + size*0.04);
+
+  canvas.toBlob(blob => {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `icon${size}.png`;
+    a.click();
+  }, 'image/png');
+});
+</script>
+</body>
+</html>

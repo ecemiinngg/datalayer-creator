@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hardal Inspector</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <!-- ── Header ─────────────────────────────────────────────── -->
+    <header class="header">
+      <div class="header-left">
+        <div class="logo">
+          <!-- Hardal brand mark: two diagonal parallel stripes -->
+          <svg width="28" height="22" viewBox="0 0 28 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="0" width="28" height="22" rx="4" fill="#0F1117"/>
+            <!-- left stripe -->
+            <path d="M5 19 L11 3 L15 3 L9 19 Z" fill="#F0F0F0"/>
+            <!-- right stripe -->
+            <path d="M12 19 L18 3 L22 3 L16 19 Z" fill="#F0F0F0"/>
+          </svg>
+          <span class="logo-text">Hardal <span class="logo-accent">Inspector</span></span>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="status-pill" id="statusPill">
+          <span class="status-dot"></span>
+          <span class="status-label">Listening</span>
+        </div>
+        <button class="icon-btn" id="clearBtn" title="Tüm eventleri temizle">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"/>
+            <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
+            <path d="M10 11v6M14 11v6"/>
+            <path d="M9 6V4h6v2"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- ── Search / Filter ────────────────────────────────────── -->
+    <div class="filter-bar">
+      <div class="search-wrap">
+        <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input class="search-input" id="searchInput" type="text" placeholder="Event veya parametre ara…" autocomplete="off" />
+        <button class="clear-search" id="clearSearch" title="Aramayı temizle">×</button>
+      </div>
+      <span class="event-count" id="eventCount">0 event</span>
+    </div>
+
+    <!-- ── Main Layout ────────────────────────────────────────── -->
+    <main class="main">
+      <!-- Event List -->
+      <div class="event-list-wrap" id="eventListWrap">
+        <div class="empty-state" id="emptyState">
+          <div class="empty-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+          </div>
+          <p class="empty-title">Event bekleniyor…</p>
+          <p class="empty-sub">Sayfayı kullanmaya başladığınızda Hardal event'leri burada görünecek.</p>
+        </div>
+        <ul class="event-list" id="eventList"></ul>
+      </div>
+
+      <!-- Payload Detail Panel -->
+      <div class="detail-panel" id="detailPanel">
+        <div class="detail-header">
+          <div class="detail-title-wrap">
+            <span class="detail-event-name" id="detailEventName">—</span>
+            <span class="detail-badge" id="detailStatus">—</span>
+          </div>
+          <div class="detail-meta" id="detailMeta"></div>
+        </div>
+        <div class="detail-tree-wrap">
+          <div class="detail-section-label">Payload</div>
+          <div class="json-tree" id="jsonTree">
+            <span class="detail-placeholder">Listeden bir event seçin</span>
+          </div>
+        </div>
+        <div class="detail-actions">
+          <button class="copy-btn" id="copyPayloadBtn" title="Payload'ı kopyala">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+            </svg>
+            Kopyala
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
